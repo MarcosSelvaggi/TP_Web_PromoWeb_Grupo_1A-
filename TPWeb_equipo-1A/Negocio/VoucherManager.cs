@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Dominio;
+
+namespace Negocio
+{
+    public class VoucherManager
+    {
+        public List<Voucher> listarVouchers()
+        {
+            List<Voucher> listaVouchers = new List<Voucher>();
+            AccesoADatos conexion = new AccesoADatos();
+
+            try
+            {
+                string query = "Select CodigoVoucher, IdCliente, FechaCanje, IdArticulo from Vouchers";
+                conexion.setearConsulta(query);
+                conexion.ejecutarQuery();
+
+                while (conexion.Lector.Read())
+                {
+                    Voucher aux = new Voucher();
+                    aux.CodigoVoucher = (string)conexion.Lector["CodigoVoucher"];
+                    aux.IdCliente = (int)conexion.Lector["IdCliente"];
+                    aux.FechaCanje = (DateTime)conexion.Lector["FechaCanje"];
+                    aux.IdArticulo = (int)conexion.Lector["IdArticulo"];
+
+                    listaVouchers.Add(aux);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+            return listaVouchers;
+        }
+    }
+}
