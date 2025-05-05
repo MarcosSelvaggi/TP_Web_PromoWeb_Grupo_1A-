@@ -41,5 +41,32 @@ namespace Negocio
             }
             return listaVouchers;
         }
+
+
+        public bool ValidarCodigo(string codigo)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string query = "Select Count(*) From Vouchers Where CodigoVoucher = @Codigo AND FechaCanje IS NULL";
+                datos.setearConsulta(query);
+                datos.limpiarParametros();
+                datos.agregarParametros("@Codigo", codigo);
+
+                object resultado = datos.EjecutarScalar();
+
+                int cantidad = Convert.ToInt32(resultado);
+                return cantidad > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

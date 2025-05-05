@@ -24,7 +24,7 @@ namespace Negocio
 
         public AccesoADatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true;");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=PROMOS_DB; integrated security=true;");
             comando = new SqlCommand();
         }
 
@@ -82,7 +82,7 @@ namespace Negocio
             conexion.Close();
         }
 
-        public int ObtenerUltimoIdInsertado()
+        /*public int ObtenerUltimoIdInsertado()
         {
 
             try
@@ -104,7 +104,7 @@ namespace Negocio
             {
                 throw ex;
             }
-        }
+        }*/
 
         public object EjecutarScalar()
         {
