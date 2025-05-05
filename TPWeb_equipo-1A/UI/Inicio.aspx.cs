@@ -30,7 +30,8 @@ namespace UI
             {
                 lblResultado.Text = "El código es válido.";
                 Session["codigoVoucher"] = codigo;
-                //Response.Redirect("SeleccionarPremio.aspx"); 
+                //Response.Redirect("SeleccionarPremio.aspx");
+                Response.Redirect("Usuario.aspx");
             }
             else
             {
