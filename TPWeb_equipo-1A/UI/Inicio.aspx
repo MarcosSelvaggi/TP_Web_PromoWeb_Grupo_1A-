@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Inicio" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="UI.Default" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title><%:Title%></title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -24,6 +24,22 @@
                             <asp:Label ID="lblResultado" runat="server" CssClass="text-danger fw-semibold" />
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="errorModalLabel">Código inválido</h5>
+                </div>
+                <div class="modal-body">
+                    El código ingresado no es válido o ya fue utilizado. Asegúrese de ingresar solo caracteres alfanuméricos (letras y números, sin símbolos).
+                </div>
+                <div class="modal-footer">
+                    <a href="Inicio.aspx" class="btn btn-secondary">Volver al inicio</a>
                 </div>
             </div>
         </div>

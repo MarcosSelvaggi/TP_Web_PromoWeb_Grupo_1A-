@@ -89,11 +89,31 @@ namespace UI
                 <div class='text-center' style='margin: 5px; padding-bottom: 5px; border: 1px solid #9b9b9b; border-radius: 15px;'>
                     <h4 style='margin: 0;'>{nombre}</h4>
                     <p'>{descripcion}</p>
-                    <button type='button' class='btn btn-primary' onclick=""if(confirm('¿Estás seguro que quieres seleccionar este premio?')) location.href='Usuario.aspx'"">Elegir Premio</button>
+                    <button type='button' class='btn btn-primary' onclick=""abrirModal({id}, '{nombre}');"">Elegir Premio</button>
                 </div>
             </div>");
 
             return cadenaHtml.ToString();
         }
+
+        private void Page_PreRender(object sender, EventArgs e)
+        {
+            string script = @"
+            <script type='text/javascript'>
+            function abrirModal(id, nombre) {
+                var btnConfirmar = document.getElementById('btnConfirmar');
+                btnConfirmar.href = 'Usuario.aspx?id=' + id;
+
+                document.getElementById('confirmarModalLabel').innerText = 'Confirmar selección del premio: ' + nombre;
+
+                var myModal = new bootstrap.Modal(document.getElementById('confirmarModal'));
+                myModal.show();
+            }
+            </script>";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "abrirModal", script);
+        }
+
+
     }
 }

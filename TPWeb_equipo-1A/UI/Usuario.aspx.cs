@@ -23,13 +23,14 @@ namespace UI
             {
                 //Por si quiere ingresar sin haber puesto el cupón ni el documento
                 //if (Session["documento"] == null || Session["codigoVoucher"] == null)
-                if (Session["codigoVoucher"] == null)
+                if (Session["codigoVoucher"] == null || Request.QueryString["id"] == null)
                 {
                     Response.Redirect("Inicio.aspx", true);
                 }
 
+
                 List<Cliente> listaClientes = clienteManager.ListarClientes();
-                Session["Documento"] = 323332; //Documento de prueba, eliminar después
+                Session["Documento"] = 32333222; //Documento de prueba, eliminar después
                 foreach (var item in listaClientes)
                 {
                     if (item.Documento == Session["documento"].ToString())
@@ -44,6 +45,8 @@ namespace UI
                         txtCiudad.Text = item.Ciudad;
                         txtCP.Text = item.CP.ToString();
                         UsuarioNuevo = false;
+                        //Lo guardo para mandarlo por parámetro al método de asignación de voucher
+                        Session["idCliente"] = item.Id;
                     }
                 }
                 if (UsuarioNuevo)
@@ -87,6 +90,21 @@ namespace UI
                 }
 
 
+                if (Session["codigoVoucher"] != null && Request.QueryString["id"] != null && Session["idCliente"] != null)
+                {
+
+                    int idArticulo = Convert.ToInt32(Request.QueryString["id"]);
+                    int idCliente = Convert.ToInt32(Session["idCliente"]);
+                    string codigoVoucher = Session["codigoVoucher"].ToString();
+
+                    VoucherManager voucherManager = new VoucherManager();
+                    voucherManager.AsignarVoucherACliente(codigoVoucher, idCliente, idArticulo);
+                }
+                Session.Clear();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
+                "var modal = new bootstrap.Modal(document.getElementById('registroExitosoModal')); modal.show();" +
+                "setTimeout(function() { window.location.href = 'Inicio.aspx'; }, 5000);", true);
             }
         }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="UI.Usuario" %>
+﻿<%@ Page Title="Usuario" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="UI.Usuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -41,6 +41,23 @@
             </div>
             <div class="mb-3">
                 <label id="lblAceptar" runat="server" class="form-label"></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="registroExitosoModal" tabindex="-1" aria-labelledby="registroExitosoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="registroExitosoModalLabel">🎉 Registro Exitoso</h5>
+                </div>
+                <div class="modal-body">
+                    ¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.
+                </div>
+                <div class="modal-footer">
+                    <!-- <a href="Exito.aspx" class="btn btn-success">Ir ahora</a> -->
+                    <a href="Inicio.aspx" class="btn btn-success">Ir ahora</a>
+                </div>
             </div>
         </div>
     </div>

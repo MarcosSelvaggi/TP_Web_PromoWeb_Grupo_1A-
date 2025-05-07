@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -23,18 +24,26 @@ namespace UI
                 return;
             }
 
+            if (!Regex.IsMatch(codigo, @"^[a-zA-Z0-9]+$"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showErrorModal",
+                "var modal = new bootstrap.Modal(document.getElementById('errorModal')); modal.show();", true);
+                return;
+            }
+
             VoucherManager manager = new VoucherManager();
             bool esValido = manager.ValidarCodigo(codigo);
 
             if (esValido)
             {
-                lblResultado.Text = "El código es válido.";
+                //lblResultado.Text = "El código es válido.";
                 Session["codigoVoucher"] = codigo;
                 Response.Redirect("Premios.aspx");
             }
             else
             {
-                lblResultado.Text = "El código es inválido o ya fue utilizado.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showErrorModal",
+                "var modal = new bootstrap.Modal(document.getElementById('errorModal')); modal.show();", true);
             }
         }
     }
