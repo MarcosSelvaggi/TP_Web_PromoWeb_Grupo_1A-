@@ -64,7 +64,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\estilosExito.css" />
+    <Content Include="Content\Imágenes\favicon.ico" />
+    <Content Include="Content\Imágenes\logo.svg" />
     <Content Include="Default.aspx" />
+    <Content Include="Exito.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Premios.aspx" />
@@ -78,6 +82,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Exito.aspx.cs">
+      <DependentUpon>Exito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Exito.aspx.designer.cs">
+      <DependentUpon>Exito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>

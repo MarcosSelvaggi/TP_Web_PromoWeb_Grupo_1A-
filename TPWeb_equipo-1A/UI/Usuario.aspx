@@ -10,8 +10,8 @@
                 <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="mb-3">
-                <asp:Button ID="btnBuscarDocumento" Text="Buscar Documento" OnClick="btnBuscarDocumento_Click" CssClass="btn btn-primary" runat="server" />
-                <asp:Button ID="btnLimpiarDocumento" Text="Limpiar Documento" OnClick="btnLimpiarDocumento_Click" CssClass="btn btn-primary" runat="server" Visible="false" />
+                <asp:Button ID="btnBuscarDocumento" Text="Buscar Documento" OnClick="btnBuscarDocumento_Click" CssClass="btn btn-outline-primary w-100 me-1" runat="server" />
+                <asp:Button ID="btnLimpiarDocumento" Text="Limpiar Documento" OnClick="btnLimpiarDocumento_Click" CssClass="btn btn-outline-primary w-100 me-1" runat="server" Visible="false" />
             </div>
 
             <div class="modal fade" id="buscarDocumentoModal" tabindex="-1" aria-labelledby="buscarDocumentoModalLabel" aria-hidden="true">
@@ -56,7 +56,7 @@
             </div>
             <div class="mb-3">
                 <asp:Button ID="btnAceptar" Text="Confirmar Datos" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" />
-                <asp:Button ID="btnModificarDatos" Text="Modificar Datos" OnClick="btnModificarDatos_Click" CssClass="btn btn-primary" runat="server" />
+                <asp:Button ID="btnModificarDatos" Text="Modificar Datos" OnClick="btnModificarDatos_Click" CssClass="btn btn-info" runat="server" Visible="false" />
             </div>
             <div class="mb-3">
                 <label id="lblAceptar" runat="server" class="form-label"></label>
@@ -91,8 +91,8 @@
                     <p>¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.</p>
                 </div>
                 <div class="modal-footer">
-                    <!-- <a href="Exito.aspx" class="btn btn-success">Ir ahora</a> -->
-                    <a href="Inicio.aspx" class="btn btn-success">Ir ahora</a>
+                        <a href="Exito.aspx" class="btn btn-success">Ir ahora</a>
+                    <!--<a href="Inicio.aspx" class="btn btn-success">Ir ahora</a> -->
                 </div>
             </div>
         </div>

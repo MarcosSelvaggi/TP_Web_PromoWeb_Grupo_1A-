@@ -13,5 +13,10 @@ namespace UI
         {
 
         }
+
+        protected void LimpiarSession_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+        }
     }
 }

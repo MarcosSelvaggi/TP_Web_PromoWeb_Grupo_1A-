@@ -58,17 +58,17 @@ namespace UI
             {
                 List<Cliente> listaClientes = clienteManager.ListarClientes();
 
-                foreach (var item in listaClientes)
+                /*foreach (var item in listaClientes)
                 {
                     if (item.Documento == txtDocumento.Text)
                     {
-                        buscarDocumentoModalLabel.InnerHtml = "❌ Error al ingresar el documento";
-                        pBusquedaDocumento.InnerHtml = "El documento ingresado ya se encuentra en el sistema";
+                        buscarDocumentoModalLabel.InnerHtml = "❌ Error al ingresar el documento.";
+                        pBusquedaDocumento.InnerHtml = "El documento ingresado ya se encuentra en el sistema.";
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "buscarDocumentoModal",
                         "var modal = new bootstrap.Modal(document.getElementById('buscarDocumentoModal')); modal.show();", true);
                         return;
                     }
-                }
+                }*/
 
                 clienteAux.Documento = txtDocumento.Text;
                 clienteAux.CP = valorAux;
@@ -81,6 +81,17 @@ namespace UI
                 // if (datosModificados)
                 if ((bool)Session["UsuarioEncontrado"] == false)
                 {
+                    foreach (var item in listaClientes)
+                    {
+                        if (item.Documento == txtDocumento.Text)
+                        {
+                            buscarDocumentoModalLabel.InnerHtml = "❌ Error al ingresar el documento.";
+                            pBusquedaDocumento.InnerHtml = "El documento ingresado ya se encuentra en el sistema.";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "buscarDocumentoModal",
+                            "var modal = new bootstrap.Modal(document.getElementById('buscarDocumentoModal')); modal.show();", true);
+                            return;
+                        }
+                    }
                     clienteManager.agregarCliente(clienteAux);
                 }
                 if ((bool)Session["UsuarioModificado"] == true)
@@ -97,12 +108,13 @@ namespace UI
 
                     VoucherManager voucherManager = new VoucherManager();
                     voucherManager.AsignarVoucherACliente(codigoVoucher, idCliente, idArticulo);
+                    Session.Clear();
                 }
-                Session.Clear();
 
+                Session["RegistroExitoso"] = true;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso",
                 "var modal = new bootstrap.Modal(document.getElementById('registroExitosoModal')); modal.show();" +
-                "setTimeout(function() { window.location.href = 'Inicio.aspx'; }, 5000);", true);
+                "setTimeout(function() { window.location.href = 'Exito.aspx'; }, 5000);", true);
             }
         }
 
@@ -178,6 +190,7 @@ namespace UI
                 if (item.Documento == Session["documento"].ToString())
                 {
                     btnLimpiarDocumento.Visible = true;
+                    btnModificarDatos.Visible = true;
                     btnBuscarDocumento.Visible = false;
                     txtDocumento.ReadOnly = true;
 
@@ -194,7 +207,8 @@ namespace UI
                     Session["idCliente"] = item.Id;
                     Session["UsuarioEncontrado"] = true;
 
-                    pBusquedaDocumento.InnerText = "Se han encontrado sus datos, confirme que son correctos";
+                    buscarDocumentoModalLabel.InnerText = "✔ Documento encontrado";
+                    pBusquedaDocumento.InnerText = "Se han encontrado sus datos, confirme que son correctos.";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "buscarDocumento",
                     "var modal = new bootstrap.Modal(document.getElementById('buscarDocumentoModal')); modal.show();", true);
                 }
@@ -203,7 +217,7 @@ namespace UI
             if (UsuarioNuevo)
             {
                 buscarDocumentoModalLabel.InnerText = "❌ Documento no encontrado";
-                pBusquedaDocumento.InnerText = "No se ha encontrado un cliente con ese documento, revise el número o complete los datos";
+                pBusquedaDocumento.InnerText = "No se ha encontrado un cliente con ese documento, revise el número o complete los datos.";
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "buscarDocumento",
                 "var modal = new bootstrap.Modal(document.getElementById('buscarDocumentoModal')); modal.show();", true);
@@ -222,6 +236,7 @@ namespace UI
             txtDocumento.ReadOnly = false;
             txtDocumento.Text = "";
             desactivarTxTs();
+            btnModificarDatos.Visible = false;
             limpiarTxTs();
         }
     }
