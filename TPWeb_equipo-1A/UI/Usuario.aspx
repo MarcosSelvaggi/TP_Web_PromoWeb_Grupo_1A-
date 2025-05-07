@@ -7,13 +7,32 @@
         <div class="col-3">
             <div class="mb-3">
                 <label id="lblDocumento" runat="server" class="form-label">Documento</label>
+                <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="mb-3">
-                <label id="lblConfirmarDatos" runat="server" class="form-label">Rellene el formulario para reclamar sus premios</label>
+                <asp:Button ID="btnBuscarDocumento" Text="Buscar Documento" OnClick="btnBuscarDocumento_Click" CssClass="btn btn-primary" runat="server" />
+                <asp:Button ID="btnLimpiarDocumento" Text="Limpiar Documento" OnClick="btnLimpiarDocumento_Click" CssClass="btn btn-primary" runat="server" Visible="false" />
             </div>
+
+            <div class="modal fade" id="buscarDocumentoModal" tabindex="-1" aria-labelledby="buscarDocumentoModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success text-white">
+                            <h5 class="modal-title" id="buscarDocumentoModalLabel" runat="server">Documento encontrado</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p id="pBusquedaDocumento" runat="server"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="mb-3">
-                <label for="txtNombre" class="form-label">Nombre</label>
-                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                <label for="txtNombre" class="form-label col-3">Nombre</label>
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control col-3" ReadOnly="true"></asp:TextBox>
             </div>
             <div class="mb-3">
                 <label for="txtApellido" class="form-label">Apellido</label>
@@ -45,6 +64,22 @@
         </div>
     </div>
 
+    <div class="modal fade" id="datosErroneosModal" tabindex="-1" aria-labelledby="datosErroneosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="datosErroneosModalLabel">❌ Error con los datos</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Por favor complete todos los campos con la información necesaria.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="registroExitosoModal" tabindex="-1" aria-labelledby="registroExitosoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -52,7 +87,8 @@
                     <h5 class="modal-title" id="registroExitosoModalLabel">🎉 Registro Exitoso</h5>
                 </div>
                 <div class="modal-body">
-                    ¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.
+                     <!--¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.-->
+                    <p>¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.</p>
                 </div>
                 <div class="modal-footer">
                     <!-- <a href="Exito.aspx" class="btn btn-success">Ir ahora</a> -->
