@@ -1,13 +1,15 @@
 ﻿<%@ Page Title="Usuario" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="UI.Usuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/scriptValidadores.js") %>"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row justify-content-center">
         <div class="col-3">
             <div class="mb-3">
                 <label id="lblDocumento" runat="server" class="form-label">Documento</label>
-                <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control" MaxLength="50" oninput="validarLongitud(this, 50, 'dniErrorMsj');"></asp:TextBox>
+                <small id="dniErrorMsj" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <asp:Button ID="btnBuscarDocumento" Text="Buscar Documento" OnClick="btnBuscarDocumento_Click" CssClass="btn btn-outline-primary w-100 me-1" runat="server" />
@@ -32,27 +34,33 @@
 
             <div class="mb-3">
                 <label for="txtNombre" class="form-label col-3">Nombre</label>
-                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control col-3" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control col-3" ReadOnly="true" MaxLength="50" oninput="validarLongitud(this, 50, 'nombreErrorMsj');"></asp:TextBox>
+                <small id="nombreErrorMsj" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <label for="txtApellido" class="form-label">Apellido</label>
-                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" ReadOnly="true" MaxLength="50" oninput="validarLongitud(this, 50, 'apellidoErrorMsj');"></asp:TextBox>
+                <small id="apellidoErrorMsj" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <label for="txtEmail" class="form-label">Dirección de mail</label>
-                <asp:TextBox runat="server" ID="txtEmail" TextMode="Email" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtEmail" TextMode="Email" CssClass="form-control" ReadOnly="true" MaxLength="50" oninput="validarLongitud(this, 50, 'mailErrorMsj');"></asp:TextBox>
+                <small id="mailErrorMsj" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <label for="txtDireccion" class="form-label">Dirección</label>
-                <asp:TextBox runat="server" ID="txtDireccion" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtDireccion" CssClass="form-control" ReadOnly="true" MaxLength="50" oninput="validarLongitud(this, 50, 'direccionErrorMsj');"></asp:TextBox>
+                <small id="direccionErrorMsj" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <label for="txtCiudad" class="form-label">Ciudad</label>
-                <asp:TextBox runat="server" ID="txtCiudad" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtCiudad" CssClass="form-control" ReadOnly="true" MaxLength="50" oninput="validarLongitud(this, 50, 'ciudadErrorMsj');"></asp:TextBox>
+                <small id="ciudadErrorMsj" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <label for="txtCP" class="form-label">Código postal</label>
-                <asp:TextBox runat="server" ID="txtCP" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtCP" CssClass="form-control" MaxLength="9" ReadOnly="false" oninput="validarCP(this);" onkeypress="return soloNumeros(event);" />
+                <small id="cpErrorMsj" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <asp:Button ID="btnAceptar" Text="Confirmar Datos" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" />
@@ -87,11 +95,11 @@
                     <h5 class="modal-title" id="registroExitosoModalLabel">🎉 Registro Exitoso</h5>
                 </div>
                 <div class="modal-body">
-                     <!--¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.-->
+                    <!--¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.-->
                     <p>¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.</p>
                 </div>
                 <div class="modal-footer">
-                        <a href="Exito.aspx" class="btn btn-success">Ir ahora</a>
+                    <a href="Exito.aspx" class="btn btn-success">Ir ahora</a>
                     <!--<a href="Inicio.aspx" class="btn btn-success">Ir ahora</a> -->
                 </div>
             </div>

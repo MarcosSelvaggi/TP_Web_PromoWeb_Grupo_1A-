@@ -13,7 +13,7 @@
 
                         <div class="mb-3">
                             <label for="txtCodigoVoucher" class="form-label">Código</label>
-                            <asp:TextBox ID="txtCodigoVoucher" runat="server" CssClass="form-control form-control-lg" placeholder="Ej: Cod0105" />
+                            <asp:TextBox ID="txtCodigoVoucher" runat="server" CssClass="form-control form-control-lg" placeholder="Ej: Cod0105" MaxLength="50" />
                         </div>
 
                         <div class="d-grid mb-3">
