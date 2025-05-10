@@ -96,7 +96,9 @@
                 </div>
                 <div class="modal-body">
                     <!--¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.-->
-                    <p>¡Sus datos fueron registrados correctamente! Serás redirigido en unos segundos.</p>
+                    <p>¡Sus datos fueron registrados correctamente!</p>
+                    <p>Le hemos enviado un mail de notificacion.</p>
+                    <p>Serás redirigido en unos segundos.</p>
                 </div>
                 <div class="modal-footer">
                     <a href="Exito.aspx" class="btn btn-success">Ir ahora</a>

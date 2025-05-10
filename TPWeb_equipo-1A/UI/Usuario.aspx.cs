@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using Services;
 
 namespace UI
 {
@@ -109,6 +110,18 @@ namespace UI
                     VoucherManager voucherManager = new VoucherManager();
                     voucherManager.AsignarVoucherACliente(codigoVoucher, idCliente, idArticulo);
                     Session.Clear();
+                }
+
+                EmailService emailService = new EmailService();
+                emailService.correo(txtEmail.Text);
+                try
+                {
+                    emailService.enviarEmail();
+                }
+                catch (Exception ex)
+                {
+
+                    Session.Add("error", ex);
                 }
 
                 Session["RegistroExitoso"] = true;
