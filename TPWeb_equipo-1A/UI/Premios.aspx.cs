@@ -66,18 +66,35 @@ namespace UI
                 <div id='Premio{id}' class='carousel slide' data-bs-ride='carousel' style='margin: 20px; margin-bottom: 5px; border: 1px solid #9b9b9b; border-radius: 15px;'>
                     <div class='carousel-inner'>");
 
-            for (int i = 0; i < imagenes.Count; i++)
+            if (imagenes.Count == 0)
             {
-                // Para saber cual es la primera imagen que debe aparecer en el carrusel.
-                string activeclass = (i == 0) ? "active" : "";
-
                 cadenaHtml.Append($@"
-                        <div class='carousel-item {activeclass}'>
-                            <img src='{imagenes[i].ToString()}' onerror=""this.onerror=null; this.src='https://th.bing.com/th/id/OIP.mSzrXbopNaal5jPsMxNHHwHaHa?cb=iwc1&rs=1&pid=ImgDetMain';"" class='d-block w-100' style='height: 300px; object-fit: contain;' alt='ImgId{i}' />
+                            <div class='carousel-item active'>
+                                <img src='https://th.bing.com/th/id/OIP.mSzrXbopNaal5jPsMxNHHwHaHa?cb=iwc1&rs=1&pid=ImgDetMain';"" class='d-block w-100' style='height: 300px; object-fit: contain;' alt='ImgId0' />
+                            </div>
+                       </div>");
+            }
+            else if (imagenes.Count == 1)
+            {
+                cadenaHtml.Append($@"
+                            <div class='carousel-item active'>
+                                <img src='{imagenes[0].ToString()}' onerror=""this.onerror=null; this.src='https://th.bing.com/th/id/OIP.mSzrXbopNaal5jPsMxNHHwHaHa?cb=iwc1&rs=1&pid=ImgDetMain';"" class='d-block w-100' style='height: 300px; object-fit: contain;' alt='ImgId{1}' />
+                            </div>
                         </div>");
             }
+            else
+            {
+                for (int i = 0; i < imagenes.Count; i++)
+                {
+                    // Para saber cual es la primera imagen que debe aparecer en el carrusel.
+                    string activeclass = (i == 0) ? "active" : "";
 
-            cadenaHtml.Append($@"
+                    cadenaHtml.Append($@"
+                            <div class='carousel-item {activeclass}'>
+                                <img src='{imagenes[i].ToString()}' onerror=""this.onerror=null; this.src='https://th.bing.com/th/id/OIP.mSzrXbopNaal5jPsMxNHHwHaHa?cb=iwc1&rs=1&pid=ImgDetMain';"" class='d-block w-100' style='height: 300px; object-fit: contain;' alt='ImgId{i}' />
+                            </div>");
+                }
+                cadenaHtml.Append($@"  
                     </div>
                     <button class='carousel-control-prev' type='button' data-bs-target='#Premio{id}' data-bs-slide='prev'>
                         <span class='carousel-control-prev-icon' style='background-color: #9b9b9b; border-radius: 30px;'></span>
@@ -85,7 +102,10 @@ namespace UI
                     <button class='carousel-control-next' type='button' data-bs-target='#Premio{id}' data-bs-slide='next'>
                         <span class='carousel-control-next-icon' style='background-color: #9b9b9b; border-radius: 30px;'></span>
                     </button>
-                </div>
+                </div>");
+            }
+
+            cadenaHtml.Append($@"
                 <div class='text-center' style='margin: 5px; padding-bottom: 5px; border: 1px solid #9b9b9b; border-radius: 15px;'>
                     <h4 style='margin: 0;'>{nombre}</h4>
                     <p'>{descripcion}</p>

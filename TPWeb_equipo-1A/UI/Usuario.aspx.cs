@@ -168,7 +168,7 @@ namespace UI
             txtDireccion.ReadOnly = true;
             txtCiudad.ReadOnly = true;
             txtCP.ReadOnly = true;
-            btnModificarDatos.Visible = true;
+            btnModificarDatos.Visible = false;
         }
 
         protected void limpiarTxTs()
@@ -186,8 +186,8 @@ namespace UI
             //if (txtDocumento.Text == null || txtDocumento.Text.Length == 0)
             if (string.IsNullOrEmpty(txtDocumento.Text))
             {
-                limpiarTxTs();
                 desactivarTxTs();
+                limpiarTxTs();
                 return;
             }
 

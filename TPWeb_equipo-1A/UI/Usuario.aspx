@@ -8,7 +8,8 @@
         <div class="col-3">
             <div class="mb-3">
                 <label id="lblDocumento" runat="server" class="form-label">Documento</label>
-                <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control" MaxLength="50" oninput="validarLongitud(this, 50, 'dniErrorMsj');"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control" MaxLength="50" oninput="validarLongitud(this, 50, 'dniErrorMsj');" onkeypress="return soloNumeros(event);"></asp:TextBox>
+                <%--<asp:TextBox runat="server" ID="txtDocumento" CssClass="form-control" MaxLength="50" oninput="validarLongitud(this, 50, 'dniErrorMsj');"></asp:TextBox>--%>
                 <small id="dniErrorMsj" class="text-danger"></small>
             </div>
             <div class="mb-3">
