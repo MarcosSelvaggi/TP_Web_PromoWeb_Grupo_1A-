@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Inicio" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="UI.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/scriptValidadores.js") %>"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,7 +14,8 @@
 
                         <div class="mb-3">
                             <label for="txtCodigoVoucher" class="form-label">Código</label>
-                            <asp:TextBox ID="txtCodigoVoucher" runat="server" CssClass="form-control form-control-lg" placeholder="Ej: Cod0105" MaxLength="50" />
+                            <asp:TextBox ID="txtCodigoVoucher" runat="server" CssClass="form-control form-control-lg" placeholder="Ej: Cod0105" MaxLength="50" oninput="validarLongitud(this, 50, 'voucherErrorMsj');"/>
+                            <small id="voucherErrorMsj" class="text-danger"></small>
                         </div>
 
                         <div class="d-grid mb-3">

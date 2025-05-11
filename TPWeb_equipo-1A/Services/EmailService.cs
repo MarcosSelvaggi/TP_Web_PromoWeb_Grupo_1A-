@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Services
 {
@@ -28,11 +29,14 @@ namespace Services
         public void correo(string emailDestino)
         {
             email = new MailMessage();
-            email.From = new MailAddress("correoprogramaciontp@gmail.com");
+            email.From = new MailAddress("correoprogramaciontp@gmail.com", "Promoción Tienda Electronics Store");
             email.To.Add(emailDestino);
-            email.Subject = "Canjeo Exitoso!!!";
+            email.Subject = "¡Gracias por participar y canjear tu premio!";
             email.IsBodyHtml = true;
-            email.Body = "<h>Su registro y premio fueron completamente exitosos!</h> <p>Siga comprando en nuestro establecimiento.</p>";
+            email.Body = "<img src='https://i.ibb.co/F4xqv50Q/logo.png' alt='Logo' style='width:150px;' /><br/>" +
+                "<h2>¡Felicidades!</h2><br/>" +
+                "<p>Tu participación en nuestro sorteo ha sido registrada exitosamente.</p>" +
+                "<p>Gracias por confiar en nosotros. ¡Esperamos verte pronto nuevamente!</p>";
         }
 
         public void enviarEmail() 
